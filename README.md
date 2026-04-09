@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# PDF AI 助手
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个智能的PDF阅读助手，支持与AI对话、语音输入、PDF导航和配置管理。
 
-Currently, two official plugins are available:
+## 功能特性
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 📖 PDF 查看与导航
+- 支持上传和查看PDF文件
+- 支持翻页功能（左右箭头、鼠标点击、页码输入）
+- 翻页后自动滚动到顶部
+- 支持PDF文本选择和建议问题生成
+- 高DPI屏幕（视网膜屏）优化显示
 
-## React Compiler
+### 🤖 AI 对话
+- 与本地大模型进行对话
+- 自动将PDF当前页作为上下文发送给AI
+- 支持Markdown格式的回复
+- 支持KaTeX数学公式渲染
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🎤 语音输入
+- 支持按住ALT键进行语音输入
+- 支持SHIFT键取消录音
+- 语音识别自动转换为文本并发送
 
-## Expanding the ESLint configuration
+### ⚙️ 配置管理
+- 统一的配置界面
+- 支持配置API端点
+- 支持配置API密钥
+- 支持配置聊天模型
+- 支持配置语音识别模型
+- 所有配置保存在浏览器localStorage中
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🎨 用户界面
+- 左右分栏布局，可调整宽度
+- 深色主题，支持浅色主题自动切换
+- 响应式设计
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 技术栈
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React 18
+- TypeScript
+- Vite
+- PDF.js
+- Marked (Markdown解析)
+- KaTeX (数学公式渲染)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 安装和运行
+
+```bash
+# 安装依赖
+pnpm install
+
+# 启动开发服务器
+pnpm dev
+
+# 构建生产版本
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 使用说明
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. 上传PDF
+点击左侧顶部的"选择PDF文件"按钮上传您的PDF文档。
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. 配置AI
+点击右侧聊天界面底部的⚙️按钮，配置：
+- API端点
+- API密钥
+- 聊天模型名称
+- 语音识别模型名称
+
+### 3. 与AI对话
+- 直接在输入框中输入问题并发送
+- 或按住ALT键进行语音输入
+- 如果想取消录音，按下SHIFT键
+
+### 4. PDF导航
+- 左键点击：下一页
+- 右键点击：上一页
+- 左箭头：上一页
+- 右箭头：下一页
+- 直接输入页码：跳转到指定页
+
+## 键盘快捷键
+
+| 快捷键 | 功能 |
+|--------|------|
+| ALT（按住） | 开始语音输入 |
+| SHIFT（在录音中） | 取消录音 |
+| 左箭头 | 上一页 |
+| 右箭头 | 下一页 |
+
+## 项目结构
+
 ```
+src/
+├── App.tsx          # 主应用组件
+├── index.css        # 样式文件
+└── main.tsx         # 应用入口
+```
+
+## 许可证
+
+MIT
